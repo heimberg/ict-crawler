@@ -9,11 +9,9 @@ url = 'https://ictbb.crm17.dynamics.com/api/data/v9.1/beembk_moduls'
 load_dotenv()
 bearer_token = os.getenv('BEARER_TOKEN')
 
+# TODO: add loop to get multiple modules
 nummer = '106'
 param = "contains(beembk_modulnummer,\'" + nummer + "\')"
-
-# request url and parse json
-# set up utf-8 encoding to avoid errors
 
 headers = {
     'Authorization': 'Bearer ' + bearer_token,
