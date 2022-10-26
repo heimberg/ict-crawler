@@ -1,0 +1,24 @@
+Codierungs-, Kompressions- und Verschlüsselungsverfahren einsetzen
+Informatik- und Netzinfrastruktur für ein kleines Unternehmen realisieren
+Abläufe mit einer Scriptsprache automatisieren
+Serverdienste in Betrieb nehmen
+LAN-Komponenten in Betrieb nehmen
+Datenbanksystem in Betrieb nehmen
+Backup- und Restore-Systeme implementieren
+Netzwerk betreiben und erweitern
+IT-System-Einführung planen und durchführen
+Software-Migration planen und durchführen
+Directoryservices konfigurieren und in Betrieb nehmen
+Daten analysieren und modellieren
+Datenbanken erstellen und Daten einfügen
+Services mit Containern bereitstellen
+Systemsicherheit implementieren
+Datenschutz und Datensicherheit anwenden
+Innovative ICT-Lösungen initialisieren
+Innovative ICT-Lösungen umsetzen
+Geschäftsprozesse im eigenen Berufsumfeld beschreiben
+Plattformübergreifende Dienste in ein Netzwerk integrieren
+Kleinprojekte im eigenen Berufsumfeld abwickeln
+Applikationen entwerfen und implementieren
+Cloud Lösungen konzipieren und realisieren
+Aufträge im eigenen Berufsumfeld selbstständig durchführen
