@@ -4,17 +4,19 @@ import requests
 from dotenv import load_dotenv
 
 url = 'https://ictbb.crm17.dynamics.com/api/data/v9.1/beembk_moduls'
+token_url = "https://modulbaukasten.ch/assets/auth.php"
 
-# get token from .env file
-load_dotenv()
-bearer_token = os.getenv('BEARER_TOKEN')
+# get token
+response = requests.request("GET", token_url)
+token = response.text[91:-4]
+token = "Bearer " + token
 
-# TODO: add loop to get multiple modules
+BEARER_TOKEN = token
 
 def get_module_names(number):
     param = "contains(beembk_modulnummer,\'" + number + "\')"
     headers = {
-        'Authorization': bearer_token,
+        'Authorization': BEARER_TOKEN,
         'content-type': 'application/json',
         'Accept': '*/*'
         'rtert'
