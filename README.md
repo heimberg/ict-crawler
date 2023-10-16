@@ -1,13 +1,13 @@
-# ICT Crawler
+# 🌐 ICT Crawler
 A script to scrape module data from [modulbaukasten.ch](https://modulbaukasten.ch) and save the results in both markdown files and an Excel spreadsheet.
 
-## Features
+## 🌟 Features
 - Retrieves the Modulbeschreibung for ICT Module from [modulbaukasten.ch](https://modulbaukasten.ch)
 - Generates individual markdown files for each module with relevant details.
 - Downloads related PDFs for the modules.
 - Creates an Excel sheet summarizing the module details.
 
-## Prerequisites
+## 🛠️ Prerequisites
 
 You need to have the following libraries installed:
 
@@ -19,7 +19,7 @@ Install the required libraries using:
 pip install -r requirements.txt
 ```
 
-## Usage
+## 🚀 Usage
 To run the script:
 ```bash
 python main.py
@@ -30,7 +30,7 @@ Upon successful execution:
 - PDFs related to the modules will be downloaded to the current directory.
 - An Excel sheet named Module_INF-PE.xlsx with the columns 'Modulnummer', 'Modultitel', 'Lernort', 'Lehrjahr' and 'Modultyp' will be generated in the current directory.
 
-## Configuration
+## ⚙️ Configuration
 
 The script is set up with predefined constants for API endpoints and identifiers. To customize for different modules or endpoints, adjust the following constants in the main.py script:
 
