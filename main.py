@@ -1,8 +1,6 @@
-import os
 import requests
-import json
 import xlsxwriter
-import pathlib
+
 
 # Constants
 BASE_URL = "https://ictbb.crm17.dynamics.com/api/data/v9.1/beembk_modulmappings"
