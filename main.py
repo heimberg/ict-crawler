@@ -9,18 +9,38 @@ ID_INF_PE = '1eac87d6-6d82-eb11-a812-0022486f6f83'
 ID_ICT = 'f1e7a970-6f82-eb11-a812-0022486f6f83'
 ID_BINF = '03a95323-bf92-eb11-b1ac-000d3a831ef4'
 
+# Cached bearer token
+_BEARER_TOKEN = None
+
 # Retrieve bearer token
 def get_bearer_token():
-    response = requests.get(TOKEN_URL)
-    token = response.text[91:-4]
-    return f"Bearer {token}"
+    """
+    Retrieve bearer token from modulbaukasten.ch API.
+    Token is cached after first retrieval.
 
-BEARER_TOKEN = get_bearer_token()
+    Returns:
+        Bearer token string in format "Bearer <token>"
+    """
+    global _BEARER_TOKEN
+
+    if _BEARER_TOKEN is not None:
+        return _BEARER_TOKEN
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8',
+    }
+    response = requests.get(TOKEN_URL, headers=headers, allow_redirects=True)
+    response.raise_for_status()  # Raise error for bad status codes
+    token_data = response.json()
+    _BEARER_TOKEN = f"{token_data['token_type']} {token_data['access_token']}"
+    return _BEARER_TOKEN
 
 # Get all modules
 def get_all_modules(identification):
     headers = {
-        'Authorization': BEARER_TOKEN,
+        'Authorization': get_bearer_token(),
         'Content-Type': 'application/json',
         'Accept': '*/*'
     }
