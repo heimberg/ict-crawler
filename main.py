@@ -97,6 +97,63 @@ def create_excel_file(response_data):
     
     workbook.close()
 
+# Get single module by number
+def get_module_by_number(module_number):
+    """
+    Fetch details for a specific module by its number.
+
+    Args:
+        module_number: The module number to search for (e.g., "162")
+
+    Returns:
+        A formatted string with module details or an error message
+    """
+    try:
+        # Try all education types to find the module
+        for edu_id, edu_name in [(ID_INF_PE, 'Informatiker/in EFZ Plattformentwicklung'),
+                                  (ID_ICT, 'ICT-Fachmann/-frau EFZ'),
+                                  (ID_BINF, 'Betriebsinformatiker/in EFZ')]:
+            response_data = get_all_modules(edu_id)
+
+            # Search for the module
+            if 'value' not in response_data:
+                continue
+
+            for module in response_data['value']:
+                if module.get('beembk_Modul', {}).get('beembk_modulnummer') == str(module_number):
+                    # Extract module details
+                    modul = module.get('beembk_Modul', {})
+                    modulnummer = modul.get('beembk_modulnummer', 'N/A')
+                    modultitel = modul.get('beembk_modultitel', 'N/A')
+                    kompetenz = modul.get('beembk_kompetenz', 'N/A')
+                    lernort = module.get('beembk_Lernort', {}).get('beembk_lernortname', 'N/A')
+                    lehrjahr = module.get('beembk_Level', {}).get('beembk_levelname', 'N/A')
+                    modultyp = module.get('beembk_Modultyp', {}).get('beembk_modultyp', 'N/A')
+                    pdf_name = modul.get('beembk_pdfname_de', '')
+
+                    # Format output
+                    output = f"""
+# Modul {modulnummer}: {modultitel}
+
+**Bildungsgang:** {edu_name}
+**Lernort:** {lernort}
+**Lehrjahr gemäss ICT BB:** {lehrjahr}
+**Modultyp:** {modultyp}
+
+## Kompetenz
+{kompetenz}
+"""
+                    if pdf_name:
+                        pdf_url = f"https://modulbaukasten.ch/Module/{pdf_name}"
+                        output += f"\n**PDF:** {pdf_url}\n"
+
+                    return output
+
+        return f"Modul {module_number} nicht gefunden."
+
+    except Exception as e:
+        return f"Fehler beim Abrufen des Moduls {module_number}: {str(e)}"
+
 # Main execution
 def main():
     # choose education
@@ -104,4 +161,5 @@ def main():
     create_markdown_files(response_data)
     create_excel_file(response_data)
 
-main()
+if __name__ == "__main__":
+    main()
